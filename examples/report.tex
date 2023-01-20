@@ -1,0 +1,229 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{geometry}%
+\geometry{tmargin=2cm,lmargin=2cm}%
+\usepackage{hyperref}%
+\usepackage{ragged2e}%
+\usepackage{tabu}%
+\usepackage[table]{xcolor}%
+\usepackage{graphicx}%
+%
+\title{Lazy Explainer Report}%
+\date{}%
+%
+\begin{document}%
+\normalsize%
+\maketitle%
+\section*{General information}%
+\label{sec:Generalinformation}%
+\textbf{Model name: }%
+\textit{DenseNet121 \newline%
+}%
+\textbf{Dataset name: }%
+\textit{Imagenette \newline%
+}%
+\textbf{Execution time: }%
+\textit{76.8 s \newline%
+}%
+\textbf{Package version: }%
+\textit{0.0.1 \newline%
+}%
+\textbf{Date: }%
+\textit{2022{-}12{-}04 \newline%
+}%
+\textbf{Selected method: }%
+\textit{GradCam}
+
+%
+\section*{Table of results}%
+\label{sec:Tableofresults}%
+\begin{center}%
+\begin{tabu}to 17cm{X[r] X[r] X[r] X[r] }%
+\textbf{Explanation Name}&\textbf{Rank}&\textbf{Faithfulness Est. ↑}&\textbf{Avg Sensitivity ↓}\\%
+&&&\\%
+\hline%
+GradCam&1&0.539&0.032\\%
+\arrayrulecolor{lightgray}%
+\hline%
+Integrated Gradients&2&0.07&0.024\\%
+\arrayrulecolor{lightgray}%
+\hline%
+Saliency&3&0.477&0.046\\%
+\arrayrulecolor{lightgray}%
+\hline%
+KernelSHAP&4&{-}0.024&0.263\\%
+\arrayrulecolor{lightgray}%
+\hline%
+\end{tabu}%
+\end{center}%
+\begin{center}%
+\begin{tabu}to 17cm{X[r] X[r] X[r] X[r] X[r] }%
+\textbf{Explanation Name}&\textbf{IROF ↑}&\textbf{Sparseness ↑}&\textbf{Time elapsed {[}s{]}}&\textbf{Agg. Score}\\%
+&&&&\\%
+\hline%
+GradCam&1.011&0.581&0.1&10\\%
+\arrayrulecolor{lightgray}%
+\hline%
+Integrated Gradients&1.011&0.674&0.2&8\\%
+\arrayrulecolor{lightgray}%
+\hline%
+Saliency&1.01&0.572&0.1&4\\%
+\arrayrulecolor{lightgray}%
+\hline%
+KernelSHAP&1.011&0.37&3.2&2\\%
+\arrayrulecolor{lightgray}%
+\hline%
+\end{tabu}%
+\end{center}%
+\textbf{Table description \newline%
+}%
+Arrow next to the metric names indicates whether larger or smaller values of metric are better. Time elapsed shows time that was required for computation of attribution for given batch of images. When there is a tie in Aggregated Score, the best metric is chosen based on computation time.
+
+%
+\newpage%
+\section*{Details}%
+\label{sec:Details}%
+\subsection*{Explanations:}%
+\label{subsec:Explanations}%
+\begin{itemize}%
+\item%
+\textbf{KernelSHAP}%
+: More information regarding this method and proof of equivalence can be found in the original paper %
+\href{https://arxiv.org/abs/1705.07874}{here.}%
+\newline%
+%
+Explanation's parameters: \newline%
+%
+\textit{\{   'explanation\_parameters': \{   'baseline\_function': baseline\_color\_mean,\newline%
+                                  'baseline\_function\_name': 'mean',\newline%
+                                  'n\_samples': 15\},\newline%
+    'mask\_parameters': \{'n\_segments': 50\}\} \newline%
+}%
+\item%
+\textbf{Integrated Gradients}%
+: Integrated Gradients is an axiomatic model interpretability algorithm that assigns an importance score to each input feature by approximating the integral of gradients of the model’s output with respect to the inputs along the path (straight line) from given baselines / references to inputs. More information regarding method can be found %
+\href{https://arxiv.org/abs/1703.01365}{here.}%
+\newline%
+%
+Explanation's parameters: \newline%
+%
+\textit{\{   'explanation\_parameters': \{   'baseline\_function': baseline\_color\_mean,\newline%
+                                  'baseline\_function\_name': 'mean',\newline%
+                                  'n\_steps': 10\}\} \newline%
+}%
+\item%
+\textbf{GradCam}%
+:  Computes element{-}wise product of guided backpropagation attributions with upsampled (non{-}negative) GradCAM attributions. GradCAM attributions are computed with respect to the layer provided in the constructor, and attributions are upsampled to match the input size. GradCAM is designed for convolutional neural networks, and is usually applied to the last convolutional layer. More information regarding method can be found %
+\href{https://arxiv.org/abs/1610.02391}{here.}%
+\newline%
+%
+Explanation's parameters: \newline%
+%
+\textit{\{   'explanation\_parameters': \{   'selected\_layer': 'features.denseblock4.denselayer16.conv2'\}\} \newline%
+}%
+\item%
+\textbf{Saliency}%
+: Returns the gradients with respect to inputs. More information regarding method can be found %
+\href{https://arxiv.org/abs/1312.6034}{here.}%
+\newline%
+%
+Explanation's parameters: \newline%
+%
+\textit{\{'explanation\_parameters': \{'abs': True\}\} \newline%
+}%
+\end{itemize}
+
+%
+\newpage%
+\subsection*{Metrics:}%
+\label{subsec:Metrics}%
+\begin{itemize}%
+\item%
+\textbf{Faithfulness Estimate}%
+: Computes the correlation between probability drops and attribution scores on various points.%
+\href{https://arxiv.org/abs/1806.07538}{(Alvarez{-}Melis et al., 2018)}%
+\newline%
+%
+Metric's parameters: \newline%
+%
+\textit{\{   'call': \{'device': 'cuda'\},\newline%
+    'init': \{   'disable\_warnings': True,\newline%
+                'display\_progressbar': False,\newline%
+                'features\_in\_step': 256,\newline%
+                'normalise': True,\newline%
+                'perturb\_baseline': 'mean',\newline%
+                'softmax': True\}\} \newline%
+}%
+\item%
+\textbf{Average Sensitivity}%
+: Measures the average sensitivity of an explanation using a Monte Carlo sampling{-}based approximation.%
+\href{https://arxiv.org/abs/1901.09392}{(Yeh et al., 2019)}%
+\newline%
+%
+Metric's parameters: \newline%
+%
+\textit{\{   'call': \{'device': 'cuda'\},\newline%
+    'init': \{   'disable\_warnings': True,\newline%
+                'display\_progressbar': False,\newline%
+                'lower\_bound': 0.2,\newline%
+                'norm\_denominator': fro\_norm,\newline%
+                'norm\_numerator': fro\_norm,\newline%
+                'normalise': True,\newline%
+                'nr\_samples': 15,\newline%
+                'perturb\_func': uniform\_noise,\newline%
+                'perturb\_radius': 0.2,\newline%
+                'similarity\_func': difference\}\} \newline%
+}%
+\item%
+\textbf{Iterative Removal of Features}%
+: Computes the area over the curve per class for sorted mean importances of feature segments (superpixels) as they are iteratively removed (and prediction scores are collected), averaged over several test samples.%
+\href{https://arxiv.org/abs/2003.08747}{(Rieger at el., 2020)}%
+\newline%
+%
+Metric's parameters: \newline%
+%
+\textit{\{   'call': \{'device': 'cuda'\},\newline%
+    'init': \{   'disable\_warnings': True,\newline%
+                'display\_progressbar': False,\newline%
+                'perturb\_baseline': 'mean',\newline%
+                'return\_aggregate': False,\newline%
+                'segmentation\_method': 'slic',\newline%
+                'softmax': True\}\} \newline%
+}%
+\item%
+\textbf{Sparseness}%
+: Uses the Gini Index for measuring, if only highly attributed features are truly predictive of the model output.%
+\href{https://arxiv.org/abs/1810.06583}{(Chalasani et al., 2020)}%
+\newline%
+%
+Metric's parameters: \newline%
+%
+\textit{\{   'call': \{'device': 'cuda'\},\newline%
+    'init': \{'disable\_warnings': True, 'display\_progressbar': False\}\} \newline%
+}%
+\end{itemize}
+
+%
+\subsection*{Aggregation parameters}%
+\label{subsec:Aggregationparameters}%
+\textit{\{   'first\_stage\_aggregation\_function': 'mean',\newline%
+    'second\_stage\_aggregation\_function': 'rank\_based',\newline%
+    'second\_stage\_aggregation\_function\_aggregation\_parameters': \{\}\}}
+
+%
+\newpage%
+\section*{Examples of explanations}%
+\label{sec:Examplesofexplanations}%
+
+
+\begin{figure}[!h]%
+\centering%
+\includegraphics[width=17cm]{C:/Users/pwkpi/AppData/Local/Temp/pylatex-tmp.eokdshqn/91c2ec7e-f75f-4248-9074-08d910ae4793.pdf}%
+\end{figure}
+
+%
+\end{document}

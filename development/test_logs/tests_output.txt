@@ -1,0 +1,150 @@
+============================= test session starts =============================
+platform win32 -- Python 3.9.13, pytest-6.2.5, py-1.11.0, pluggy-1.0.0 -- C:\Users\pwkpi\miniconda3\envs\env_inz_test\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\pwkpi\OneDrive\Pulpit\aga\inz\lazy-explain
+plugins: cov-3.0.0, forked-1.4.0, github-actions-annotate-failures-0.1.7, lazy-fixture-0.6.3, xdist-2.5.0
+collecting ... collected 61 items
+
+tests/test_custom.py::test_shap_explanation PASSED                       [  1%]
+tests/test_custom.py::test_grad_cam PASSED                               [  3%]
+tests/test_custom.py::test_integrated_gradients_explanation PASSED       [  4%]
+tests/test_custom.py::test_saliency_explanation PASSED                   [  6%]
+tests/test_handlers.py::test_shap_handler PASSED                         [  8%]
+tests/test_handlers.py::test_shap_handler_with_parameters_default_slic_masks PASSED [  9%]
+tests/test_handlers.py::test_shap_handler_with_parameters_kandinsky_masks PASSED [ 11%]
+tests/test_handlers.py::test_grad_cam_handler PASSED                     [ 13%]
+tests/test_handlers.py::test_metric_handler_default_parameters[AvgSensitivityHandler] PASSED [ 14%]
+tests/test_handlers.py::test_metric_handler_default_parameters[FaithfulnessEstimateHandler] PASSED [ 16%]
+tests/test_handlers.py::test_metric_handler_default_parameters[IROFHandler] PASSED [ 18%]
+tests/test_handlers.py::test_metric_handler_default_parameters[SparsenessHandler] PASSED [ 19%]
+tests/test_handlers.py::test_metric_handler_passed_parameters[AvgSensitivityHandler-params0] PASSED [ 21%]
+tests/test_handlers.py::test_metric_handler_passed_parameters[FaithfulnessEstimateHandler-params1] PASSED [ 22%]
+tests/test_handlers.py::test_metric_handler_passed_parameters[IROFHandler-params2] PASSED [ 24%]
+tests/test_handlers.py::test_metric_handler_passed_parameters[SparsenessHandler-params3] PASSED [ 26%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[metric_handler0-GradCamHandler] PASSED [ 27%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[metric_handler0-explanation_handler1] PASSED [ 29%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[metric_handler0-SaliencyHandler] PASSED [ 31%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[metric_handler0-explanation_handler3] PASSED [ 32%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[metric_handler1-GradCamHandler] PASSED [ 34%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[metric_handler1-explanation_handler1] PASSED [ 36%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[metric_handler1-SaliencyHandler] PASSED [ 37%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[metric_handler1-explanation_handler3] PASSED [ 39%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[IROFHandler-GradCamHandler] PASSED [ 40%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[IROFHandler-explanation_handler1] PASSED [ 42%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[IROFHandler-SaliencyHandler] PASSED [ 44%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[IROFHandler-explanation_handler3] PASSED [ 45%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[SparsenessHandler-GradCamHandler] PASSED [ 47%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[SparsenessHandler-explanation_handler1] PASSED [ 49%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[SparsenessHandler-SaliencyHandler] PASSED [ 50%]
+tests/test_handlers.py::test_explanation_and_metric_handlers_together[SparsenessHandler-explanation_handler3] PASSED [ 52%]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_imagenette] PASSED [ 54%]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_cxr] PASSED [ 55%]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_kandinsky] PASSED [ 57%]
+tests/test_lazy_explainer.py::test_evaluate PASSED                       [ 59%]
+tests/test_lazy_explainer.py::test_get_info_for_reports PASSED           [ 60%]
+tests/test_lazy_explainer.py::test_generate_plot_for_report PASSED       [ 62%]
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_pdf_report_small[metrics0-explanations0] XPASS [ 63%]
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_html_report[metrics0-explanations0] PASSED [ 65%]
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_html_report[metrics1-explanations1] PASSED [ 67%]
+tests/test_lazy_explainer.py::test_lazy_explainer_rank_based_aggregation_function PASSED [ 68%]
+tests/test_lazy_explainer.py::test_lazy_explainer_only_rank_based_aggregation_function PASSED [ 70%]
+tests/test_lazy_explainer.py::test_lazy_explainer_seed PASSED            [ 72%]
+tests/test_lazy_explainer.py::test_checks_init PASSED                    [ 73%]
+tests/test_lazy_explainer.py::test_checks_evaluate PASSED                [ 75%]
+tests/test_lazy_explainer.py::test_checks_aggregate PASSED               [ 77%]
+tests/test_lazy_explainer.py::test_checks_get_best_explanation PASSED    [ 78%]
+tests/test_lazy_explainer.py::test_cuda_low_memory_test PASSED           [ 80%]
+tests/test_utils.py::test_update_dictionary PASSED                       [ 81%]
+tests/test_utils.py::test_channel_first[shape0-expected_shape0-array] PASSED [ 83%]
+tests/test_utils.py::test_channel_first[shape0-expected_shape0-as_tensor] PASSED [ 85%]
+tests/test_utils.py::test_channel_first[shape1-expected_shape1-array] PASSED [ 86%]
+tests/test_utils.py::test_channel_first[shape1-expected_shape1-as_tensor] PASSED [ 88%]
+tests/test_utils.py::test_channel_last[shape0-expected_shape0-array] PASSED [ 90%]
+tests/test_utils.py::test_channel_last[shape0-expected_shape0-as_tensor] PASSED [ 91%]
+tests/test_utils.py::test_channel_last[shape1-expected_shape1-array] PASSED [ 93%]
+tests/test_utils.py::test_channel_last[shape1-expected_shape1-as_tensor] PASSED [ 95%]
+tests/test_utils.py::test_second_stage_aggregation_weighted_mean PASSED  [ 96%]
+tests/test_utils.py::test_first_stage_aggregation_with_numpy PASSED      [ 98%]
+tests/test_utils.py::test_fix_relus_in_model PASSED                      [100%]
+
+============================== warnings summary ===============================
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\matplotlib\__init__.py:169
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\matplotlib\__init__.py:169
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\matplotlib\__init__.py:169
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\matplotlib\__init__.py:169
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\matplotlib\__init__.py:169
+  C:\Users\pwkpi\miniconda3\envs\env_inz_test\lib\site-packages\matplotlib\__init__.py:169: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(module.__version__) < minver:
+
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\setuptools\_distutils\version.py:346
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\setuptools\_distutils\version.py:346
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\setuptools\_distutils\version.py:346
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\setuptools\_distutils\version.py:346
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\setuptools\_distutils\version.py:346
+  C:\Users\pwkpi\miniconda3\envs\env_inz_test\lib\site-packages\setuptools\_distutils\version.py:346: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    other = LooseVersion(other)
+
+..\..\..\..\..\miniconda3\envs\env_inz_test\lib\site-packages\captum\attr\_utils\visualization.py:15
+  C:\Users\pwkpi\miniconda3\envs\env_inz_test\lib\site-packages\captum\attr\_utils\visualization.py:15: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
+    from IPython.core.display import HTML, display
+
+tests/test_custom.py::test_saliency_explanation
+  C:\Users\pwkpi\miniconda3\envs\env_inz_test\lib\site-packages\captum\_utils\gradient.py:57: UserWarning: Input Tensor 0 did not already require gradients, required_grads has been set automatically.
+    warnings.warn(
+
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_imagenette]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_cxr]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_kandinsky]
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_html_report[metrics0-explanations0]
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_html_report[metrics1-explanations1]
+  C:\Users\pwkpi\OneDrive\Pulpit\aga\inz\lazy-explain\src\lazy_explain\lazy_explainer.py:508: FutureWarning: this method is deprecated in favour of `Styler.hide(axis='index')`
+    report_info["result_dataframe"]
+
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_imagenette]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_cxr]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_kandinsky]
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_html_report[metrics0-explanations0]
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_html_report[metrics1-explanations1]
+  C:\Users\pwkpi\OneDrive\Pulpit\aga\inz\lazy-explain\src\lazy_explain\lazy_explainer.py:508: FutureWarning: this method is deprecated in favour of `Styler.to_html()`
+    report_info["result_dataframe"]
+
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_imagenette]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_cxr]
+tests/test_lazy_explainer.py::test_lazy_explainer[densenet_with_kandinsky]
+  C:\Users\pwkpi\OneDrive\Pulpit\aga\inz\lazy-explain\tests\test_lazy_explainer.py:159: GuessedAtParserWarning: No parser was explicitly specified, so I'm using the best available HTML parser for this system ("lxml"). This usually isn't a problem, but if you run this code on another system, or in a different virtual environment, it may use a different parser and behave differently.
+  
+  The code that caused this warning is on line 159 of the file C:\Users\pwkpi\OneDrive\Pulpit\aga\inz\lazy-explain\tests\test_lazy_explainer.py. To get rid of this warning, pass the additional argument 'features="lxml"' to the BeautifulSoup constructor.
+  
+    soup = BeautifulSoup(open(HTML_REPORT_TEST_FILENAME))
+
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_pdf_report_small[metrics0-explanations0]
+  C:\Users\pwkpi\miniconda3\envs\env_inz_test\lib\site-packages\pylatex\figure.py:61: MatplotlibDeprecationWarning: savefig() got unexpected keyword argument "fig" which is no longer supported as of 3.3 and will become an error two minor releases later
+    plt.savefig(filepath, *args, **kwargs)
+
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_html_report[metrics0-explanations0]
+tests/test_lazy_explainer.py::test_lazy_explainer_generates_html_report[metrics1-explanations1]
+  C:\Users\pwkpi\OneDrive\Pulpit\aga\inz\lazy-explain\tests\test_lazy_explainer.py:252: GuessedAtParserWarning: No parser was explicitly specified, so I'm using the best available HTML parser for this system ("lxml"). This usually isn't a problem, but if you run this code on another system, or in a different virtual environment, it may use a different parser and behave differently.
+  
+  The code that caused this warning is on line 252 of the file C:\Users\pwkpi\OneDrive\Pulpit\aga\inz\lazy-explain\tests\test_lazy_explainer.py. To get rid of this warning, pass the additional argument 'features="lxml"' to the BeautifulSoup constructor.
+  
+    soup = BeautifulSoup(open(HTML_REPORT_TEST_FILENAME))
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+
+---------- coverage: platform win32, python 3.9.13-final-0 -----------
+Name                                                    Stmts   Miss  Cover
+---------------------------------------------------------------------------
+src\lazy_explain\__init__.py                                1      0   100%
+src\lazy_explain\_constants.py                              4      0   100%
+src\lazy_explain\_descriptions.py                           2      0   100%
+src\lazy_explain\explanations\__init__.py                   0      0   100%
+src\lazy_explain\explanations\custom.py                   106      0   100%
+src\lazy_explain\explanations\explanation_handlers.py     172     17    90%
+src\lazy_explain\explanations\masks.py                     55      0   100%
+src\lazy_explain\lazy_explainer.py                        381      7    98%
+src\lazy_explain\metrics.py                                80      2    98%
+src\lazy_explain\utils.py                                 137      6    96%
+---------------------------------------------------------------------------
+TOTAL                                                     938     32    97%
+
+=========== 60 passed, 1 xpassed, 28 warnings in 1055.28s (0:17:35) ===========

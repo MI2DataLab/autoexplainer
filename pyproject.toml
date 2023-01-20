@@ -1,0 +1,93 @@
+[tool.poetry]
+name = "autoeXplainer"
+version = "0.0.3"
+description = "A short description of the project"
+authors = [
+    "Your name <Your email address (eq. you@example.com)>",
+]
+license = "MIT"
+readme = "README.md"
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+
+packages = [
+    { include = "autoexplainer", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+opencv-python= {version="4.5.5.62", markers="python_version < '3.10' and platform_machine == 'x86_64' and python_version >= '3.9'"}
+numpy= {version="1.19.5", markers="python_version < '3.10' and platform_machine == 'x86_64' and python_version >= '3.9'"}
+quantus = {git = "https://github.com/p-wojciechowski/Quantus.git", branch="frozen_for_thesis"}
+captum = "^0.5.0"
+einops = "^0.5.0"
+torch = "^1.12.1"
+torchvision = "^0.13.1"
+pandas = "~1.2"
+PyLaTeX = "^1.4.1"
+scikit-learn = "^0.24.2"
+
+[tool.poetry.dev-dependencies]
+autoflake = "*"
+black = "*"
+flake8 = "*"
+flake8-bugbear = "*"
+flake8-builtins = "*"
+flake8-comprehensions = "*"
+flake8-debugger = "*"
+flake8-eradicate = "*"
+flake8-logging-format = "*"
+isort = "*"
+mkdocstrings = "*"
+mkdocs-material = "*"
+mypy = "*"
+pep8-naming = "*"
+pre-commit = "*"
+pymdown-extensions = "*"
+pytest = "*"
+pytest-github-actions-annotate-failures = "*"
+pytest-cov = "*"
+python-kacl = "*"
+pyupgrade = "*"
+tryceratops = "*"
+data-science-types = "^0.2.23"
+notebook = "^6.4.12"
+pytest-xdist = "^2.5.0"
+mkdocstrings-python = "^0.7.1"
+beautifulsoup4 = "^4.11.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
+
+[tool.black]
+target-version = ["py37", "py38", "py39"]
+include = '\.pyi?$'
+line-length = 120
+
+[tool.mypy]
+disallow_any_unimported = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+strict_equality = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_return_any = true
+check_untyped_defs = true
+show_error_codes = true
+ignore_missing_imports = true
+exclude = 'development'
+disable_error_code = ['comparison-overlap', 'assignment', 'no-redef', 'no-any-return']
