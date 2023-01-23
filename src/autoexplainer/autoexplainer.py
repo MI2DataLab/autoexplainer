@@ -152,9 +152,15 @@ class AutoExplainer:
         Args:
             explanations (List[str]): List of names of explanation methods to be evaluated.
                                       By default, uses all available explanation methods.
+                                      Accepts lists with subset of: ``{"saliency", "grad_cam", "integrated_gradients", "kernel_shap"}``.
             metrics (List[str]): List of names of evaluation metrics to be used. By default, uses all available metrics.
-            explanation_params (Dict): Allows to override default parameters of selected explanation functions.
-            metrics_params (Dict): Allows to override default parameters of selected metrics.
+                                Accepts lists with subset of: ``{"irof", "sparseness", "average_sensitivity", "faithfulness_estimate"}``.
+            explanation_params (Dict[str, Dict]): Allows to override default parameters of selected explanation functions.
+                                                Accept Dictionary with form ``{"explanation_name": <Dictionary with parameters>}``.
+                                                See corresponding ExplanationHandler to see what parameters are accepted.
+            metrics_params (Dict[str, Dict]): Allows to override default parameters of selected metrics.
+                                              Accept Dictionary with form ``{"metric_name": <Dictionary with parameters>}``.
+                                              See corresponding MetricHandler to see what parameters are accepted.
 
         """
         self._check_method_and_metric_names(explanations, metrics)
@@ -296,6 +302,15 @@ class AutoExplainer:
     def to_html(
         self, file_path: str, model_name: str = None, dataset_name: str = None, labels: Dict[int, str] = None
     ) -> None:
+        """
+        Generates evaluation report as HTML file.
+        Args:
+            file_path (str): Target file path.
+            model_name (str): Name of model to show inside report.
+            dataset_name (str): Name of dataset to show inside report.
+            labels (Dict[int,str]): Mapping between class number and class names. e.g. ``{0:"dog", 1:"cat", 2:"fish"}`` for labels
+                                    inside report.
+        """
         assert self.first_aggregation_results is not None, "Aggregated results are needed for report generation."
         assert self.second_aggregation_results is not None, "Aggregated results are needed for report generation."
 
@@ -343,14 +358,14 @@ class AutoExplainer:
 
         """
         Creates PDF report from dict stored in the attribute ``first_aggregation_results``.
-        Also creates ``.tex`` report, so to run this function additional tool are required - see README.
+        Needs Latex packages installed to run - see README.
 
         Args:
             folder_path (str): Path to directory, where the reports (PDF and tex) should be created.
-            model_name (str): Name of the model, defined by user. Later displayed in report.
-            dataset_name (str): Name of the dataset, defined by user. Later displayed in report.
-            execution_time (int): Time how long it took to find best explanation. Later displayed in report.
-            best_result (str): Name of the best explanatioon method. Later displayed in report.
+            model_name (str): Name of model to show inside report.
+            dataset_name (str): Name of dataset to show inside report.
+            labels (Dict[int,str]): Mapping between class number and class names. e.g. ``{0:"dog", 1:"cat", 2:"fish"}`` for labels
+                                    inside report.
 
         """
         self._check_is_after_aggregation()
