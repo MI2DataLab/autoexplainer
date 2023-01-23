@@ -1,15 +1,17 @@
+--extra-index-url https://download.pytorch.org/whl/cu116
 captum==0.5.0
 einops==0.5.0
--e git+https://github.com/p-wojciechowski/lazy-explain.git@3f50a4cd287c1d048afbec09afb3aea6f558096f#egg=lazy_explain
+autoexplainer @ git+https://github.com/MI2DataLab/autoexplainer.git@main
+Jinja2==3.1.2
 numpy==1.19.5
 opencv-python==4.5.5.62
 packaging==21.3
 pandas==1.2.5
-quantus @ git+https://github.com/p-wojciechowski/Quantus.git@7ed674f19925379479ad4245a8788b1b23ab46e4
+quantus @ git+https://github.com/p-wojciechowski/Quantus.git@frozen_for_thesis
 requests==2.28.1
 rich==12.5.1
 scikit-image==0.19.1
-torch==1.12.1
-torchvision==0.13.1
+torch==1.12.1+cu116
+torchvision==0.13.1+cu116
 tqdm==4.62.3
 zennit==0.5.0
