@@ -1,13 +1,13 @@
 # API documentation
 
-## Lazy Explainer
+## AutoeXplainer
 
-:::lazy_explain.lazy_explainer
+:::autoexplainer.autoexplainer
 
 ## Metric handlers
 
-:::lazy_explain.metrics
+:::autoexplainer.metrics
 
 ## Explanation methods handlers
 
-:::lazy_explain.explanations.explanation_handlers
+:::autoexplainer.explanations.explanation_handlers

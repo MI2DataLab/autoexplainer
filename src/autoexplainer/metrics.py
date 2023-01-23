@@ -51,6 +51,18 @@ class MetricHandler(ABC):
         attributions: torch.Tensor = None,
         explanation_func: Callable = None,
     ) -> np.ndarray:
+        """
+        Computes metric values for given model, dataset, and explanation function.
+        Args:
+            model:
+            data:
+            targets:
+            attributions:
+            explanation_func:
+
+        Returns:
+            NumPy array with metric values for each given image.
+        """
         x_batch = deepcopy(data.cpu().detach().numpy())
         y_batch = deepcopy(targets.cpu().detach().numpy())
         if attributions is not None:
@@ -108,9 +120,6 @@ class FaithfulnessEstimateHandler(MetricHandler):
 
     "call": No parameters are used.
 
-
-
-
     """
 
     def __init__(
@@ -165,8 +174,6 @@ class AvgSensitivityHandler(MetricHandler):
     - `similarity_func` (callable): similarity function applied to compare input and perturbed input.
 
     **"call"**: No parameters are used.
-
-
 
     """
 
@@ -253,10 +260,11 @@ class IROFHandler(MetricHandler):
     - abs: a bool stating if absolute operation should be taken on the attributions
     - normalise: a bool stating if the attributions should be normalised
     - normalise_func: a Callable that make a normalising transformation of the attributions
-    - segmentation_method (string): Image segmentation method:'slic' or 'felzenszwalb', default="slic"
+    - segmentation_method (string): Image segmentation method: 'slic' or 'felzenszwalb', default="slic"
     - perturb_baseline (string): indicates the type of baseline: "mean", "random", "uniform", "black" or "white", default="mean"
     - perturb_func (callable): input perturbation function, default=baseline_replacement_by_indices
     - softmax (boolean): indicates wheter to use softmax probabilities or logits in model prediction
+
     "call": No parameters are used.
 
     """
