@@ -8,10 +8,10 @@ Prerequisites: installed python 3.9.
 ### With `poetry`
 To install all dependencies from `poetry.toml` file using `poetry` run:
 ```sh
-git clone https://github.com/p-wojciechowski/lazy-explain.git
-cd lazy-explain
+git clone https://github.com/MI2DataLab/autoexplainer.git
+cd autoexplainer
 poetry config virtualenvs.in-project true
-poetry shell # if you want create dedicated .venv inside lazy-explain
+poetry shell # if you want create dedicated .venv inside autoexplainer
 poetry install
 ```
 To use created enviroment, activate it with `poetry shell`.
@@ -19,21 +19,28 @@ To use created enviroment, activate it with `poetry shell`.
 ### With `pip`
 To install dependencies the regular way you can use `pip`:
 ```sh
+git clone https://github.com/MI2DataLab/autoexplainer.git
+cd autoexplainer
 pip install -r requirements.txt
 ```
 
-### To update environment on EDEN
+### To update the environment
 After pulled changes in dependencies, you can update dependencies with:
 ```sh
 poetry update
-pip3 install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu116
+```
+
+### Installing torch 12.1 with CUDA 11.6 support
+To uninstall current torch version and install torch 12.1 with CUDA 11.6 support, run:
+```sh
+pip uninstall torch torchvision
+pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
 ```
 
 ### To create PDF report with function `to_pdf`
-The function `to_pdf` creates both `.tex` and `.pdf` report versions. Due to this fact, some additional features has to be installed to render PDF report properly:
-* install [MiKTeX](https://miktex.org/) and add to PATH
-  * via MiKTeX add packages: `latexmk`, `lastpage`, `geometry`, `tabu`, `varwidth`, `colortbl`, `booktabs`.
-* if you do not already have, install [Perl](https://www.perl.org/get.html) and add to PATH
+The function `to_pdf` creates both `.tex` and `.pdf` report versions. Due to this fact, additional features have to be installed to render PDF report properly:
+* install LaTeX eg. [MiKTeX](https://miktex.org/) and add to PATH
+  * in MiKTeX enable automatically installing missing packages
 * add dependency with `pip`:
 ```sh
 pip install pylatex
@@ -41,7 +48,7 @@ pip install pylatex
 
 ## Usage
 
-See sample notebook in [`development/notebooks/autoexplainer_test.ipynb`](https://github.com/p-wojciechowski/lazy-explain/blob/main/development/notebooks/autoexplainer_test.ipynb).
+See sample notebook in [`development/notebooks/auto_explainer_usage.ipynb`](https://github.com/MI2DataLab/autoexplainer/blob/main/development/notebooks/auto_explainer_usage.ipynb).
 
 ### Selection process
 
@@ -62,7 +69,7 @@ auto_explainer.first_aggregation_results  # single value per (method, metric) pa
 auto_explainer.second_aggregation_results  # single value per method
 
 # produce a pdf report
-auto_explainer.to_pdf(file_path='report.pdf')
+auto_explainer.to_html('examples/example_report.html')
 ```
 
 ### Using results
@@ -101,7 +108,7 @@ pytest tests
 ```
 or a selected test a time:
 ```sh
-pytest tests/test_autoexplain.py
+pytest tests/test_autoexplainer.py
 ```
 or print output during tests:
 ```sh
