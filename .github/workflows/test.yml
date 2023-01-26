@@ -30,6 +30,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip3 install .
+      - run: python3 tests/sanity_check.py
 
   test:
     runs-on: ubuntu-latest
