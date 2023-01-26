@@ -150,7 +150,7 @@ def main(argv):
 if __name__=="__main__":
     main(sys.argv)
     #how to run: python development/eden/run_experiment_script.py Imagenette 2 development/data/kandinsky_1_challenge/ 1 development/eden/output_from_experiments
-                #python script_name dataset_name number_of_images (in batch) path_to_images how_many_times(run for each dataset) path to folder where to put all outputs
+                #python script_name dataset_name number_of_images(in batch) path_to_images how_many_times(run for each dataset) path_to_folder_where_to_put_all_outputs
 
 
 
