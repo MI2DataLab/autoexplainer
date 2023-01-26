@@ -54,8 +54,8 @@ list_of_classes = [
 labels = {i: label for i, label in enumerate(list_of_classes)}
 
 
-explainer = AutoExplainer(model, x_batch, y_batch, device="cpu")  # or device="cuda"
-explainer.evaluate()
+explainer = AutoExplainer(model, x_batch, y_batch, device="cpu")
+explainer.evaluate(explanations=["grad_cam", "saliency"], metrics=["irof", "sparseness"])
 explainer.aggregate()
 explainer.to_html("sanity_check_report.html", model_name="DenseNet121")
 os.remove("sanity_check_report.html")
