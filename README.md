@@ -21,7 +21,7 @@ To install dependencies the regular way you can use `pip`:
 ```sh
 git clone https://github.com/MI2DataLab/autoexplainer.git
 cd autoexplainer
-pip install -r requirements.txt
+pip install .
 ```
 
 ### To update the environment
@@ -30,8 +30,9 @@ After pulled changes in dependencies, you can update dependencies with:
 poetry update
 ```
 
-### Installing torch 12.1 with CUDA 11.6 support
-To uninstall current torch version and install torch 12.1 with CUDA 11.6 support, run:
+### Installing torch 12.1 with other CUDA version
+In order to use Pytorch with GPU, you must match `torch` CUDA version with CUDA driver on your machine.
+e.g. to install `torch 12.1` with CUDA 11.6 support, run:
 ```sh
 pip uninstall torch torchvision
 pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
