@@ -748,7 +748,7 @@ testing = ["Django (<3.1)", "attrs", "colorama", "docopt", "pytest (<7.0.0)"]
 name = "Jinja2"
 version = "3.1.2"
 description = "A very fast and expressive template engine."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -937,7 +937,7 @@ testing = ["coverage", "pyyaml"]
 name = "MarkupSafe"
 version = "2.1.1"
 description = "Safely add untrusted strings to HTML/XML markup."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -2357,7 +2357,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "66f5cc12f46e5fd7ba7282985f00385a6e740e5376007adaa9892e5f1a068111"
+content-hash = "4ac4c8355c7b33eb0d468bc0621eba2de7b49ee8eeb4a3cffd5d12e8e1e36307"
 
 [metadata.files]
 anyio = [
