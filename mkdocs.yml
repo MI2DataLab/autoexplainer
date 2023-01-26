@@ -1,5 +1,5 @@
-site_name: Lazy Explain
-repo_url: https://github.com//lazy-explain
+site_name: AutoeXplainer
+repo_url: https://mi2datalab.github.io/autoexplainer/
 
 theme:
   name: material
@@ -17,6 +17,10 @@ nav:
   - Introduction: 'index.md'
   - api_docs.md
   - changelog.md
+  - 'Demo Reports':
+    - 'Imagenette dataset': 'reports/img_report.html'
+    - 'CXR dataset': 'reports/cxr_report.html'
+    - 'Kandinsky Patterns dataset': 'reports/kp_report.html'
 
 markdown_extensions:
   - pymdownx.snippets:

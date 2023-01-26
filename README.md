@@ -2,6 +2,8 @@
 
 A python package for automated selection of explanation method for CNNs.
 
+Reports from demo dataset can be found here: [CXR dataset](demo_results/CXR_dataset/cxr_report.html), [Imagenette dataset](demo_results/Imagenette_dataset/imagenette_report.html), [Kandinsky Patterns dataset](demo_results/Kandinsky_dataset/kandinsky_patterns_report.html).
+
 ## Installation
 Prerequisites: installed python 3.9.
 
