@@ -35,6 +35,7 @@ torchvision = "^0.13.1"
 pandas = "~1.2"
 PyLaTeX = "^1.4.1"
 scikit-learn = "^0.24.2"
+Jinja2 = "^3.1.2"
 
 [tool.poetry.dev-dependencies]
 autoflake = "*"
