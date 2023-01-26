@@ -1,3 +1,17 @@
+"""
+To reproduce reports from the thesis, run this script with parameters:
+
+script_name: path to this script
+dataset_name: for datasets in this repository, choose from: Imagenette, chest_xray, KP
+number_of_images: to run script on
+path_to_images: if other data than the one provided in this repository, fill in this parameter with path to dataset, otherwise put '.'
+how_many_times: to run the selection for provided dataset
+path_to_folder_where_to_put_all_outputs: path to output directory
+
+example: python development/eden/run_experiment_script.py Imagenette 2 . 1 development/eden/output_from_experiments
+
+"""
+
 import torch
 import torchvision
 import sys
@@ -149,8 +163,6 @@ def main(argv):
 
 if __name__=="__main__":
     main(sys.argv)
-    #how to run: python development/eden/run_experiment_script.py Imagenette 2 development/data/kandinsky_1_challenge/ 1 development/eden/output_from_experiments
-                #python script_name dataset_name number_of_images(in batch) path_to_images how_many_times(run for each dataset) path_to_folder_where_to_put_all_outputs
 
 
 
