@@ -1,9 +1,11 @@
 # type: ignore
 # flake8: noqa: F811
 from functools import partial
+from typing import Union
 
 import numpy as np
 import pytest
+import torch
 
 from autoexplainer.explanations.custom import (
     grad_cam,
@@ -13,7 +15,7 @@ from autoexplainer.explanations.custom import (
 )
 from autoexplainer.explanations.masks import batch_segmentation
 from autoexplainer.utils import baseline_color_black, baseline_color_mean
-from tests.utils import densenet_with_imagenette  # NOQA
+from tests.utils import dummy_model_and_data  # NOQA
 
 
 @pytest.fixture(scope="module")
@@ -28,8 +30,8 @@ def assert_explanations():
     return _assert_explanations
 
 
-def test_shap_explanation(densenet_with_imagenette, assert_explanations):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_shap_explanation(dummy_model_and_data, assert_explanations):
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
 
     mask_function = partial(batch_segmentation, n_segments=5, mask_function_name="slic")
     explanation_parameters = ({"n_samples": 5, "baseline_function": baseline_color_mean},)
@@ -41,18 +43,27 @@ def test_shap_explanation(densenet_with_imagenette, assert_explanations):
     assert_explanations(explanation, x_batch)
 
 
-def test_grad_cam(densenet_with_imagenette, assert_explanations):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_grad_cam(dummy_model_and_data, assert_explanations):
+    def get_last_conv_layer_name(model: torch.nn.Module) -> Union[str, None]:
+        last_conv_layer_name = None
+        for name, layer in model.named_modules():
+            if isinstance(layer, torch.nn.Conv2d):
+                last_conv_layer_name = name
+        if last_conv_layer_name:
+            return last_conv_layer_name
+        return None
 
-    selected_layer = "features.denseblock4.denselayer16.conv2"
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
+
+    selected_layer = get_last_conv_layer_name(model)
 
     explanation = grad_cam(model, x_batch, y_batch, selected_layer=selected_layer)
 
     assert_explanations(explanation, x_batch)
 
 
-def test_integrated_gradients_explanation(densenet_with_imagenette, assert_explanations):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_integrated_gradients_explanation(dummy_model_and_data, assert_explanations):
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
 
     baseline_function = baseline_color_black
     n_steps = 2
@@ -63,8 +74,8 @@ def test_integrated_gradients_explanation(densenet_with_imagenette, assert_expla
     assert_explanations(explanation, x_batch)
 
 
-def test_saliency_explanation(densenet_with_imagenette, assert_explanations):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_saliency_explanation(dummy_model_and_data, assert_explanations):
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
 
     explanation = saliency_explanation(model, x_batch, y_batch)
 

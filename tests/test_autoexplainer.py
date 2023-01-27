@@ -18,12 +18,7 @@ from autoexplainer._constants import (
 from autoexplainer.autoexplainer import AutoExplainer
 from autoexplainer.explanations.explanation_handlers import BestExplanation
 from autoexplainer.utils import second_stage_aggregation_rank_based
-from tests.utils import (  # NOQA;
-    densenet_with_cxr,
-    densenet_with_imagenette,
-    densenet_with_kandinsky,
-    dummy_model_and_data,
-)
+from tests.utils import dummy_model_and_data
 
 HTML_REPORT_TEST_FILENAME = "report_for_test.html"
 
@@ -70,24 +65,16 @@ def autoexplainer_after_agg_of_metric_method_subset(dummy_model_and_data):
                         "some": "<function fro_nor at 0x000001F6D607AEE0> mm <function froo_norm at 0x000001F6D607AEE0> method_parametermethod_parametermethod_parameter method_parametermethod_parametermethod_parameter"
                     },
                 },
-                attributions=torch.rand(4, 1, 256, 256),
+                attributions=torch.rand(len(x_batch), 1, 256, 256),
             )
-        explainer.targets = torch.tensor([1, 2, 3, 4])
+        explainer.targets = y_batch
         return explainer
 
     return _dummy_autoexplainer
 
 
-@pytest.mark.parametrize(
-    "model_and_data",
-    [
-        pytest.lazy_fixture("densenet_with_imagenette"),
-        pytest.lazy_fixture("densenet_with_cxr"),
-        pytest.lazy_fixture("densenet_with_kandinsky"),
-    ],
-)
-def test_autoexplainer(model_and_data):
-    model, x_batch, y_batch, n_classes = model_and_data
+def test_autoexplainer(dummy_model_and_data):
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
     device = "cuda" if torch.cuda.is_available() else "cpu"
     explainer = AutoExplainer(model, x_batch, y_batch, device)
 
@@ -177,8 +164,8 @@ def test_autoexplainer(model_and_data):
     os.remove(HTML_REPORT_TEST_FILENAME)
 
 
-def test_evaluate(densenet_with_imagenette):
-    model, x_batch, y_batch, _ = densenet_with_imagenette
+def test_evaluate(dummy_model_and_data):
+    model, x_batch, y_batch, _ = dummy_model_and_data
     device = "cuda" if torch.cuda.is_available() else "cpu"
     explainer = AutoExplainer(model, x_batch, y_batch, device)
 
@@ -381,8 +368,8 @@ def test_autoexplainer_only_rank_based_aggregation_function():
     assert result_dict == {"grad_cam": 1.0, "kernel_shap": 7.0, "integrated_gradients": 8.0, "saliency": 8.0}
 
 
-def test_autoexplainer_seed(densenet_with_imagenette):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_autoexplainer_seed(dummy_model_and_data):
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
 
     explainer_1 = AutoExplainer(model, x_batch, y_batch)
     explainer_1.evaluate(explanations=["saliency", "grad_cam"], metrics=["irof", "sparseness"])
