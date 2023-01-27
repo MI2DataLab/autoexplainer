@@ -1,5 +1,5 @@
 """
-To reproduce reports from the thesis, run this script with parameters:
+Script parameters:
 
 script_name: path to this script
 dataset_name: for datasets in this repository, choose from: Imagenette, chest_xray, KP
@@ -8,7 +8,25 @@ path_to_images: if other data than the one provided in this repository, fill in 
 how_many_times: to run the selection for provided dataset
 path_to_folder_where_to_put_all_outputs: path to output directory
 
-example: python development/eden/run_experiment_script.py Imagenette 2 . 1 development/eden/output_from_experiments
+---
+
+To reproduce reports from the thesis, run this script with parameters:
+
+CXR: python script_for_eden.py chest_xray_all 200 datasets/CXR/kaggle-dataset-2-covid-processed-whole/Train 1 output_folder_CXR
+Imagenette: python script_for_eden.py Imagenette_all 200 datasets/Imagenette/imagenette2-320/train 1 output_folder_Imagenette
+Kandinsky Patterns: python script_for_eden.py KP_all 200 datasets/KandinskyPatterns/challenge-nr-1/train 1 output_folder_Kandinsky
+
+---
+
+Datsets
+
+
+CXR: https://www.kaggle.com/datasets/anasmohammedtahir/covidqu
+Imagenette: https://github.com/fastai/imagenette/
+Kandinsky Patterns Challange 1: https://github.com/human-centered-ai-lab/dat-kandinsky-patterns/tree/master/challenge-nr-1
+
+Kandinsky Patterns Challange 1 dataset was split into train and test subsets with script `demo_results/Kandinsky_dataset/train_test_split.py`.
+
 
 """
 
