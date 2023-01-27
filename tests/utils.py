@@ -46,6 +46,7 @@ def dummy_model_and_data():
             x = torch.nn.functional.softmax(x)
             return x
 
+    torch.manual_seed(42)
     model = SimpleCNN()
     model.eval()
     x_batch, y_batch, n_classes = get_dataset("development/data/imagenette")
