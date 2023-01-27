@@ -43,14 +43,12 @@ def dummy_model_and_data():
             x = self.cnn_layers(x)
             x = x.view(x.size(0), -1)
             x = self.linear_layers(x)
+            x = torch.nn.functional.softmax(x)
             return x
 
     model = SimpleCNN()
     model.eval()
-    x_batch = torch.arange(4 * 3 * 256 * 256).reshape(4, 3, 256, 256).float()
-    x_batch = torch.nn.functional.normalize(x_batch)
-    y_batch = torch.tensor([0, 1, 2, 0])
-    n_classes = 10
+    x_batch, y_batch, n_classes = get_dataset("development/data/imagenette")
     model.forward(x_batch)
 
     return model, x_batch, y_batch, n_classes
