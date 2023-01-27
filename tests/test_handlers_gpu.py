@@ -19,7 +19,7 @@ from autoexplainer.metrics import (
     IROFHandler,
     SparsenessHandler,
 )
-from tests.utils import densenet_with_imagenette, resnet_with_kandinsky  # NOQA
+from tests.utils import dummy_model_and_data  # NOQA
 
 
 @pytest.fixture
@@ -36,8 +36,8 @@ def dummy_explanation_function():
 @pytest.mark.parametrize(
     "handler_constructor", [GradCamHandler, IntegratedGradients, KernelShapHandler, SaliencyHandler]
 )
-def test_explanation_handler_runs_with_default_params(handler_constructor, densenet_with_imagenette):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_explanation_handler_runs_with_default_params(handler_constructor, dummy_model_and_data):
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
     if torch.cuda.is_available():
         model.cuda()
         x_batch = x_batch.cuda()
@@ -49,8 +49,8 @@ def test_explanation_handler_runs_with_default_params(handler_constructor, dense
     assert isinstance(handler.explain(model, x_batch, y_batch), torch.Tensor)
 
 
-def test_shap_handler_with_parameters_default_slic_masks(densenet_with_imagenette):  # noqa: F811
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_shap_handler_with_parameters_default_slic_masks(dummy_model_and_data):  # noqa: F811
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
     if torch.cuda.is_available():
         model.cuda()
         x_batch = x_batch.cuda()
@@ -68,8 +68,8 @@ def test_shap_handler_with_parameters_default_slic_masks(densenet_with_imagenett
     assert created_explanation_function.keywords["mask_function"].keywords["n_segments"] == 11
 
 
-def test_shap_handler_with_parameters_kandinsky_masks(densenet_with_imagenette):  # noqa: F811
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_shap_handler_with_parameters_kandinsky_masks(dummy_model_and_data):  # noqa: F811
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
     if torch.cuda.is_available():
         model.cuda()
         x_batch = x_batch.cuda()
@@ -89,8 +89,8 @@ def test_shap_handler_with_parameters_kandinsky_masks(densenet_with_imagenette):
 @pytest.mark.parametrize(
     "handler_constructor", [AvgSensitivityHandler, FaithfulnessEstimateHandler, IROFHandler, SparsenessHandler]
 )
-def test_metric_handler_default_parameters(densenet_with_imagenette, dummy_explanation_function, handler_constructor):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_metric_handler_default_parameters(dummy_model_and_data, dummy_explanation_function, handler_constructor):
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
     explanation = dummy_explanation_function
     if torch.cuda.is_available():
         model.cuda()
@@ -115,9 +115,9 @@ def test_metric_handler_default_parameters(densenet_with_imagenette, dummy_expla
     ],
 )
 def test_metric_handler_with_passed_parameters(
-    densenet_with_imagenette, dummy_explanation_function, handler_constructor, params
+    dummy_model_and_data, dummy_explanation_function, handler_constructor, params
 ):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
     if torch.cuda.is_available():
         model.cuda()
         x_batch = x_batch.cuda()
@@ -156,8 +156,8 @@ def test_metric_handler_with_passed_parameters(
         SparsenessHandler,
     ],
 )
-def test_explanation_and_metric_handlers_together(densenet_with_imagenette, explanation_handler, metric_handler):
-    model, x_batch, y_batch, n_classes = densenet_with_imagenette
+def test_explanation_and_metric_handlers_together(dummy_model_and_data, explanation_handler, metric_handler):
+    model, x_batch, y_batch, n_classes = dummy_model_and_data
     if torch.cuda.is_available():
         model.cuda()
         x_batch = x_batch.cuda()
