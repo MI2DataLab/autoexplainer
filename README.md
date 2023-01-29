@@ -2,7 +2,7 @@
 
 A python package for automated selection of explanation method for CNNs.
 
-Reports from demo datasets can be found here: [CXR dataset](https://github.com/MI2DataLab/autoexplainer/blob/main/demo_results/CXR_dataset/cxr_report.html), [Imagenette dataset](https://github.com/MI2DataLab/autoexplainer/blob/main/demo_results/Imagenette_dataset/imagenette_report.html), [Kandinsky Patterns dataset](https://github.com/MI2DataLab/autoexplainer/blob/main/demo_results/Kandinsky_dataset/kandinsky_patterns_report.html).
+Reports from demo datasets can be found here: [CXR dataset](https://mi2datalab.github.io/autoexplainer/reports/cxr_report.html), [Imagenette dataset](https://mi2datalab.github.io/autoexplainer/reports/img_report.html), [Kandinsky Patterns dataset](https://mi2datalab.github.io/autoexplainer/reports/kp_report.html).
 
 ## Installation
 Prerequisites: installed python 3.9.
